@@ -1,0 +1,280 @@
+/* Dark mode (default) */
+:root,
+[data-bs-theme="dark"] {
+    --sp-black: #000000;
+    --sp-base: #121212;
+    --sp-hover: #282828;
+    --sp-green: #1ed760;
+    --sp-text: #b3b3b3;
+    --sp-card: #181818;
+    --sp-border: #2a2a2a;
+}
+
+/* Light mode overrides */
+[data-bs-theme="light"] {
+    --sp-black: #ffffff;
+    --sp-base: #f5f5f5;
+    --sp-hover: #e9e9e9;
+    --sp-green: #1ed760;
+    --sp-text: #5e5e5e;
+    --sp-card: #ffffff;
+    --sp-border: #dddddd;
+}
+
+body {
+    background-color: var(--sp-black);
+    color: var(--sp-text-h, inherit);
+    margin: 0;
+    overflow: hidden;
+    /* Prevents whole-page scroll, only specific areas will scroll */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+[data-bs-theme="dark"] body {
+    color: #ffffff;
+}
+
+[data-bs-theme="light"] body {
+    color: #121212;
+}
+
+/* Custom Short Classes */
+.bg-base {
+    background-color: var(--sp-base);
+    transition: background-color 0.2s ease;
+}
+
+.bg-hover:hover {
+    background-color: var(--sp-hover);
+}
+
+.text-sp {
+    color: var(--sp-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+[data-bs-theme="dark"] .text-sp:hover {
+    color: #ffffff;
+}
+
+[data-bs-theme="light"] .text-sp:hover {
+    color: #000000;
+}
+
+.text-green {
+    color: var(--sp-green);
+}
+
+/* Buttons & Forms */
+.btn-green {
+    background-color: var(--sp-green);
+    color: #000;
+    font-weight: 700;
+    border-radius: 500px;
+    border: none;
+    padding: 12px 32px;
+}
+
+.btn-green:hover {
+    background-color: #1fdf64;
+    transform: scale(1.04);
+}
+
+.form-sp {
+    background-color: transparent;
+    border: 1px solid #727272;
+    color: inherit;
+}
+
+.form-sp:focus {
+    background-color: transparent;
+    border-color: var(--sp-green);
+    box-shadow: none;
+    color: inherit;
+}
+
+/* Layout Dimensions */
+.sidebar-w {
+    width: 280px;
+}
+
+.player-h {
+    height: 90px;
+    background-color: var(--sp-black);
+    border-top: 1px solid var(--sp-border);
+}
+
+.main-content {
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+/* Cards */
+.card-sp {
+    background-color: var(--sp-card);
+    border: 1px solid var(--sp-border);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-sp:hover {
+    background-color: var(--sp-hover);
+}
+@media (hover: none) {
+  .play-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.img-sp-wide {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+.img-sp {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+
+/* Play overlay button that appears on card hover, Spotify-style */
+.play-overlay {
+    position: absolute;
+    bottom: 68px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--sp-green);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
+}
+
+.card-sp:hover .play-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.play-overlay:hover {
+    transform: scale(1.06);
+}
+
+/* Save/heart button on each card */
+.save-btn {
+    background: none;
+    border: none;
+    color: var(--sp-text);
+    padding: 0;
+}
+
+.save-btn:hover {
+    color: var(--sp-green);
+}
+
+.save-btn.active {
+    color: var(--sp-green);
+}
+
+/* Range inputs (seek + volume) styled to look like Spotify's bars */
+input[type="range"].range-sp {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--sp-hover);
+    outline: none;
+}
+
+input[type="range"].range-sp::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+input[type="range"].range-sp:hover::-webkit-slider-thumb {
+    opacity: 1;
+}
+
+input[type="range"].range-sp::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+.form-sp option {
+  color: #000000;
+  background-color: #ffffff;
+}
+.btn-circle-sp {
+    background-color: var(--sp-hover);
+    border: none;
+}
+
+.btn-circle-sp:hover {
+    background-color: var(--sp-border);
+}
+.hero-banner {
+    background: linear-gradient(135deg, var(--sp-hover) 0%, var(--sp-base) 100%);
+    border-radius: 12px;
+    padding: 32px 28px;
+    border: 1px solid var(--sp-border);
+}
+
+.card-sp {
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-sp:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+.section-header {
+    border-left: 4px solid var(--sp-green);
+    padding-left: 10px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--sp-text);
+    background-color: var(--sp-base);
+    border-radius: 12px;
+    border: 1px dashed var(--sp-border);
+}
+
+.page-title {
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+@media (max-width: 576px) {
+  .hero-banner { padding: 20px 16px; }
+  .page-title { font-size: 1.4rem; }
+  .navbar-actions .btn { padding: 6px 12px; font-size: 0.75rem; }
+}
+
+.navbar-actions {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
